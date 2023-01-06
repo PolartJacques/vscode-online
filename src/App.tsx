@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FunctionComponent } from 'react'
+import CodeEditor from './components/CodeEditor'
+import './App.css'
 
-function App() {
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='sidebar'>sidebar</div>
+      <div className='right-part'>
+        <div className='editor'>
+          <CodeEditor />
+        </div>
+        <div className='console'>console</div>
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
