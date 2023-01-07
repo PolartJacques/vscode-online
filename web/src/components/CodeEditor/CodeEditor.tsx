@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react"
 import "./CodeEditor.css"
-import { createMonacoEditor } from "../../service/Monaco"
+import { createMonacoEditor } from "../../service/Monaco.service"
 
 const CodeEditor: FunctionComponent = () => {
 
