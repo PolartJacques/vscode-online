@@ -2,17 +2,13 @@ enum Keys {
   CONTAINER_ID = "containerId"
 }
 
-const set = {
-  containerId: (containerId: string) => sessionStorage.setItem(Keys.CONTAINER_ID, containerId)
-}
+export default class StorageService {
 
-const get = {
-  containerId: () => sessionStorage.getItem(Keys.CONTAINER_ID)
-}
+  public set = {
+    containerId: (containerId: string) => sessionStorage.setItem(Keys.CONTAINER_ID, containerId)
+  }
 
-const StorageService = {
-  get,
-  set
+  public get = {
+    containerId: () => sessionStorage.getItem(Keys.CONTAINER_ID)
+  }
 }
-
-export default StorageService

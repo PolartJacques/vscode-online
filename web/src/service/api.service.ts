@@ -1,12 +1,42 @@
-const API_URL = "http://localhost:8080"
+export default class ApiService {
 
-async function get<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_URL}${endpoint}`)
-  return await response.json()
+  baseUrl: string
+
+  constructor() {
+    this.baseUrl = 'http://localhost:8080';
+  }
+
+  async get<T>(endpoint: string): Promise<T> {
+    const response = await fetch(this.baseUrl + endpoint);
+    const data = await response.json();
+    return data;
+  }
+
+  async post<T>(endpoint: string, body: any): Promise<T> {
+    const response = await fetch(this.baseUrl + endpoint, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json'},
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async put<T>(endpoint: string, body: any): Promise<T> {
+    const response = await fetch(this.baseUrl + endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json'},
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async delete<T>(endpoint: string): Promise<T> {
+    const response = await fetch(this.baseUrl + endpoint, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    return data;
+  }
 }
-
-const Api = {
-  get
-}
-
-export default Api

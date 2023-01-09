@@ -1,10 +1,14 @@
-import Api from "./api.service"
+import ApiService from "./api.service"
 
-const createDockerContainer = async (): Promise<string> => {
-  const containerId = await Api.get<string>('/create')
-  return containerId
-}
+export default class DockerService {
+  private apiService: ApiService
 
-export {
-  createDockerContainer
+  constructor() {
+    this.apiService = new ApiService()
+  }
+
+  public async createDockerContainer(): Promise<string> {
+    const containerId = await this.apiService.get<string>('/create')
+    return containerId
+  }
 }

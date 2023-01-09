@@ -1,18 +1,19 @@
 import express from 'express'
-import { createNodeContainer } from './services/dockerode/dockerode.service'
+import DockerService from './services/dockerode/dockerode.service'
 import cors from 'cors'
 
 const PORT = 8080
+const dockerService = new DockerService()
 
 const app = express()
 app.use(cors())
 
-app.get('/', async (req, res) => {
+app.get('/', async (_req, res) => {
   res.json("hello world")
 })
 
-app.get('/create', async (req, res) => {
-  const container = await createNodeContainer()
+app.get('/create', async (_req, res) => {
+  const container = await dockerService.createNodeContainer()
   res.json(container.id)
 })
 
