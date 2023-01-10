@@ -1,5 +1,5 @@
 import { ContainersManagerService } from './services/containersManager.service';
-import DockerService from './services/dockerode/dockerode.service';
+import DockerService from './services/docker.service';
 
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
 const dockerService = new DockerService();

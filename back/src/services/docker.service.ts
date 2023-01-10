@@ -1,5 +1,5 @@
 import Docker from 'dockerode';
-import { ContainersManagerService } from '../containersManager.service';
+import { ContainersManagerService } from './containersManager.service';
 
 export default class DockerService {
   docker: Docker;

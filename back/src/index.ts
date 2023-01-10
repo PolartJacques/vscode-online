@@ -1,5 +1,5 @@
 import express from 'express';
-import DockerService from './services/dockerode/dockerode.service';
+import DockerService from './services/docker.service';
 import cors from 'cors';
 import { ContainersManagerService } from './services/containersManager.service';
 import './cron';
