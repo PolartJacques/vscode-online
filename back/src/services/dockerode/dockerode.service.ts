@@ -1,10 +1,10 @@
-import Docker from 'dockerode'
+import Docker from 'dockerode';
 
 export default class DockerService {
-  docker: Docker
+  docker: Docker;
 
   constructor() {
-    this.docker = new Docker()
+    this.docker = new Docker();
   }
 
   public async createNodeContainer(): Promise<Docker.Container> {
@@ -17,8 +17,8 @@ export default class DockerService {
       Cmd: ['bash'],
       OpenStdin: true,
       StdinOnce: false,
-    })
-    await container.start()
-    return container
+    });
+    await container.start();
+    return container;
   }
 }

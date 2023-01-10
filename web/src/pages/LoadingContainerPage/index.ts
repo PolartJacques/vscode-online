@@ -1,3 +1,3 @@
-import LoadingContainerPage from "./LoadingContainerPage"
+import LoadingContainerPage from './LoadingContainerPage';
 
-export default LoadingContainerPage
+export default LoadingContainerPage;

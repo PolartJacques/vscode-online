@@ -1,6 +1,6 @@
 export default class ApiService {
 
-  baseUrl: string
+  baseUrl: string;
 
   constructor() {
     this.baseUrl = 'http://localhost:8080';
@@ -12,7 +12,7 @@ export default class ApiService {
     return data;
   }
 
-  async post<T>(endpoint: string, body: any): Promise<T> {
+  async post<T, B>(endpoint: string, body: B): Promise<T> {
     const response = await fetch(this.baseUrl + endpoint, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -22,7 +22,7 @@ export default class ApiService {
     return data;
   }
 
-  async put<T>(endpoint: string, body: any): Promise<T> {
+  async put<T, B>(endpoint: string, body: B): Promise<T> {
     const response = await fetch(this.baseUrl + endpoint, {
       method: 'PUT',
       body: JSON.stringify(body),
