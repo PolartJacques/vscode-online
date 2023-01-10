@@ -1,4 +1,5 @@
 import Docker from 'dockerode';
+import { ContainersManagerService } from '../containersManager.service';
 
 export default class DockerService {
   docker: Docker;
@@ -20,5 +21,17 @@ export default class DockerService {
     });
     await container.start();
     return container;
+  }
+
+  public async removeContainer(containerId: string): Promise<void> {
+    const container = this.docker.getContainer(containerId);
+    try {
+      await container.stop();
+      await container.remove();
+      ContainersManagerService.removeContainer(containerId);
+    } catch(error) {
+      console.error(`DockerService > removeContainer : container ${containerId} could't be stoped`);
+      console.error(error);
+    }
   }
 }

@@ -1,6 +1,8 @@
 import express from 'express';
 import DockerService from './services/dockerode/dockerode.service';
 import cors from 'cors';
+import { ContainersManagerService } from './services/containersManager.service';
+import './cron';
 
 const PORT = 8080;
 const dockerService = new DockerService();
@@ -14,6 +16,7 @@ app.get('/', async (_req, res) => {
 
 app.get('/create', async (_req, res) => {
   const container = await dockerService.createNodeContainer();
+  ContainersManagerService.markContainerAsUsed(container.id, Date.now());
   res.json(container.id);
 });
 
