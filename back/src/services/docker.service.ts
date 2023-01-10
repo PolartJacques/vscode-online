@@ -8,19 +8,24 @@ export default class DockerService {
     this.docker = new Docker();
   }
 
-  public async createNodeContainer(): Promise<Docker.Container> {
-    const container = await this.docker.createContainer({
-      Image: 'node:latest',
-      AttachStdin: false,
-      AttachStdout: true,
-      AttachStderr: true,
-      Tty: true,
-      Cmd: ['bash'],
-      OpenStdin: true,
-      StdinOnce: false,
-    });
-    await container.start();
-    return container;
+  public async createNodeContainer(): Promise<Docker.Container | null> {
+    try {
+      const container = await this.docker.createContainer({
+        Image: 'node:latest',
+        AttachStdin: false,
+        AttachStdout: true,
+        AttachStderr: true,
+        Tty: true,
+        Cmd: ['bash'],
+        OpenStdin: true,
+        StdinOnce: false,
+      });
+      await container.start();
+      return container;
+    } catch {
+      return null;
+    }
+    
   }
 
   public async removeContainer(containerId: string): Promise<void> {

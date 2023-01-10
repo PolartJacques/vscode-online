@@ -16,6 +16,10 @@ app.get('/', async (_req, res) => {
 
 app.get('/create', async (_req, res) => {
   const container = await dockerService.createNodeContainer();
+  if (!container) {
+    res.status(500).send();
+    return;
+  }
   ContainersManagerService.markContainerAsUsed(container.id, Date.now());
   res.json(container.id);
 });

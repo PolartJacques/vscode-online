@@ -7,8 +7,12 @@ export default class DockerService {
     this.apiService = new ApiService();
   }
 
-  public async createDockerContainer(): Promise<string> {
-    const containerId = await this.apiService.get<string>('/create');
-    return containerId;
+  public async createDockerContainer(): Promise<string | null> {
+    try {
+      const containerId = await this.apiService.get<string>('/create');
+      return containerId;
+    } catch {
+      return null;
+    }
   }
 }
